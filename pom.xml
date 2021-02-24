@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.kunmall</groupId>
+    <artifactId>kunmall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>kunmall</name>
+    <description>mall父工程</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>kunmall-coupon</module>
+        <module>kunmall-member</module>
+        <module>kunmall-order</module>
+        <module>kunmall-product</module>
+        <module>kunmall-ware</module>
+    </modules>
+
+</project>
