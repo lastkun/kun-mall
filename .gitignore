@@ -3,7 +3,7 @@
 **/mvnw
 **/mvnw.cmd
 **/.mvn
-
+#**/src/main/resources/src/
 
 # IDEA #
 .idea/
