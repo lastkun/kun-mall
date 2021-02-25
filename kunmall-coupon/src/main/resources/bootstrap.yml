@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: kunmall-coupon
+  #nacos作为配置中心
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.101.58:8848
+        ext-config:

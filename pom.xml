@@ -16,6 +16,7 @@
         <module>kunmall-product</module>
         <module>kunmall-ware</module>
         <module>kunmall-common</module>
+        <module>kunmall-gateway</module>
     </modules>
 
     <properties>
@@ -23,7 +24,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <mybatis.plus.spring.boot.version>3.2.0</mybatis.plus.spring.boot.version>
-        <spring-cloud.version>2.1.0.RELEASE</spring-cloud.version>
+        <spring-cloud.alibaba.version>2.1.0.RELEASE</spring-cloud.alibaba.version>
         <lombok.version>1.18.8</lombok.version>
         <httpcomponents.version>4.4.12</httpcomponents.version>
         <mysql.version>8.0.17</mysql.version>
@@ -93,7 +94,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR1</version>
+                <version>Greenwich.SR3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -101,7 +102,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring-cloud.alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

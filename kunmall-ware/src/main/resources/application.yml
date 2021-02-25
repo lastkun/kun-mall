@@ -1,12 +1,21 @@
 server:
   port: 13000
 
+
 spring:
   datasource:
     username: root
     password: root
     url: jdbc:mysql://192.168.101.58:3307/kunmall_wms
     driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: kunmall-ware
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.101.58:8848  #nacos注册中心地址
+
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
