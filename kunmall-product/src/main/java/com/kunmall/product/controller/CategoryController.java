@@ -1,6 +1,7 @@
 package com.kunmall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,16 @@ import com.kunmall.common.utils.CommonResult;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * 得到三级菜单树
+     * @return
+     */
+    @RequestMapping("/list/tree")
+    public CommonResult getMenuTree(){
+        List<CategoryEntity> menu = categoryService.listWithTree();
+        return CommonResult.ok().put("data",menu);
+    }
 
     /**
      * 列表
