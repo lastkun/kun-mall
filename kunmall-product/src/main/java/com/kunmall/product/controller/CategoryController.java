@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import com.kunmall.common.utils.CommonResult;
  */
 @RestController
 @RequestMapping("product/category")
+@Api("商品分类")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;

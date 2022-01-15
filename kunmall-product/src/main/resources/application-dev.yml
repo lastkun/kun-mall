@@ -1,0 +1,26 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: kunmall-product
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.18.162:3306/kunmall_pms?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.18.162:8848
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto  #自增主键
+
+logging:
+  level:
+    com.kunmall: debug

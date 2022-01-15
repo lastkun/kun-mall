@@ -30,6 +30,7 @@
         <mysql.version>8.0.17</mysql.version>
         <servlet.version>2.5</servlet.version>
         <validation.version>2.0.1.Final</validation.version>
+        <swagger.version>3.0.0</swagger.version>
     </properties>
 
     <dependencyManagement>
@@ -75,6 +76,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- 集成swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
 
             <dependency>
