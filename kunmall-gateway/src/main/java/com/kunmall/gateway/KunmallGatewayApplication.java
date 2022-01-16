@@ -12,9 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@EnableSwagger2
 public class KunmallGatewayApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(KunmallGatewayApplication.class,args);
     }

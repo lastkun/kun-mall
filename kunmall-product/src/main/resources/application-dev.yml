@@ -13,7 +13,12 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.18.162:8848
-
+#swagger:
+#  enable: true
+#  application-name: ${spring.application.name}
+#  application-version: 1.0
+#  application-description: springfox swagger 3.0整合Demo
+#  try-host: http://localhost:${server.port}
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -24,3 +29,4 @@ mybatis-plus:
 logging:
   level:
     com.kunmall: debug
+

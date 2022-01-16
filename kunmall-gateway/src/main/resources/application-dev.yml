@@ -7,10 +7,12 @@ spring:
         server-addr: 192.168.18.162:8848  #nacos注册中心地址
     gateway:
       routes:
-        - id: prodpct
+        - id: product_route
           uri: lb://kunmall-product #配注册中心服务名
           predicates:
             - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
         - id: coupon
           uri: https://www.baidu.com
           predicates:

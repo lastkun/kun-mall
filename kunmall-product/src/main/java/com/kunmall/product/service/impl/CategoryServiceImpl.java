@@ -32,12 +32,39 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Override
     public List<CategoryEntity> listWithTree() {
-        //所有分类列表
-        List<CategoryEntity> category = baseMapper.selectList(null);
+        //全部分类
+        List<CategoryEntity> all = baseMapper.selectList(null);
 
-        //找出一级分类
-        List<CategoryEntity> firstCategory = category.stream().filter(categoryEntity -> categoryEntity.getParentCid().equals(0L)).collect(Collectors.toList());
-        return null;
+        //找出一级分类并组装分类树
+        List<CategoryEntity> categoryTree = all.stream().filter(categoryEntity -> categoryEntity.getParentCid() == 0)
+                .map(categoryEntity -> {
+                    categoryEntity.setSubCategories(addSubcategories(categoryEntity, all));
+                    return categoryEntity;
+                })
+                .sorted((o1, o2) -> {
+            return o1.getSort() - o2.getSort();
+        }).collect(Collectors.toList());
+
+        return categoryTree;
     }
+
+    /**
+     * 拼接子分类
+     * @param root
+     * @param all
+     * @return
+     */
+    private List<CategoryEntity> addSubcategories(CategoryEntity root, List<CategoryEntity> all) {
+        List<CategoryEntity> collect = all.stream().filter(categoryEntity -> categoryEntity.getParentCid().equals(root.getCatId()))
+                .map(categoryEntity -> {
+                    categoryEntity.setSubCategories(addSubcategories(categoryEntity, all));
+                    return categoryEntity;
+                })
+                .sorted((o1, o2) -> {
+                    return o1.getSort() - o2.getSort();
+                }).collect(Collectors.toList());
+        return collect;
+    }
+
 
 }
