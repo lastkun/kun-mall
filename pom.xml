@@ -17,6 +17,7 @@
         <module>kunmall-ware</module>
         <module>kunmall-common</module>
         <module>kunmall-gateway</module>
+        <module>kunmall-auth</module>
     </modules>
 
     <properties>
