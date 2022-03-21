@@ -12,5 +12,13 @@ public interface CategoryService extends IService<CategoryEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     List<CategoryEntity> listWithTree();
+
+    /**
+     * 逻辑删除
+     * @param asList
+     */
+    void deleteByLogic(List<Long> asList);
+
+    String getCategoryPath(Long catelogId);
 }
 

@@ -3,7 +3,9 @@ package com.kunmall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kunmall.common.utils.PageUtils;
 import com.kunmall.product.entity.AttrGroupEntity;
+import com.kunmall.product.model.AttrGroupModel;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,8 @@ import java.util.Map;
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<AttrGroupEntity> queryPage(AttrGroupModel model);
+
 }
 

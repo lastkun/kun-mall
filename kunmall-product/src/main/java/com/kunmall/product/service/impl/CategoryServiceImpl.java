@@ -1,9 +1,10 @@
 package com.kunmall.product.service.impl;
 
+import com.sun.deploy.uitoolkit.impl.awt.AWTDragHelper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -41,12 +42,30 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                     categoryEntity.setSubCategories(addSubcategories(categoryEntity, all));
                     return categoryEntity;
                 })
-                .sorted((o1, o2) -> {
-            return o1.getSort() - o2.getSort();
-        }).collect(Collectors.toList());
+                .sorted((o1, o2) -> o1.getSort() - o2.getSort()).collect(Collectors.toList());
 
         return categoryTree;
     }
+
+    @Override
+    public void deleteByLogic(List<Long> asList) {
+        baseMapper.deleteBatchIds(asList);
+    }
+
+    @Override
+    public String getCategoryPath(Long catelogId) {
+        ArrayList<String> pathArr = new ArrayList<>();
+        while (catelogId != 0) {
+            CategoryEntity categoryEntity = baseMapper.selectById(catelogId);
+            pathArr.add(String.valueOf(catelogId));
+            catelogId = categoryEntity.getParentCid();
+        }
+        pathArr.add("0");
+        Collections.reverse(pathArr);
+        return StringUtils.join(pathArr, ",");
+    }
+
+
 
     /**
      * 拼接子分类
@@ -60,9 +79,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                     categoryEntity.setSubCategories(addSubcategories(categoryEntity, all));
                     return categoryEntity;
                 })
-                .sorted((o1, o2) -> {
-                    return o1.getSort() - o2.getSort();
-                }).collect(Collectors.toList());
+                .sorted(Comparator.comparingInt(CategoryEntity::getSort)).collect(Collectors.toList());
         return collect;
     }
 

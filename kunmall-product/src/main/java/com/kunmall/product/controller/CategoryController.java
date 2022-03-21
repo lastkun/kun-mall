@@ -92,10 +92,9 @@ public class CategoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("product:category:delete")
     public CommonResult delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
-
+		//categoryService.removeByIds(Arrays.asList(catIds));
+        categoryService.deleteByLogic(Arrays.asList(catIds));
         return CommonResult.ok();
     }
 

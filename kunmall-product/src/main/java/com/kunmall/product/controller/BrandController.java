@@ -1,9 +1,14 @@
 package com.kunmall.product.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,10 +62,8 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("product:brand:save")
-    public CommonResult save(@RequestBody BrandEntity brand){
-		brandService.save(brand);
-
+    public CommonResult save(@RequestBody @Validated BrandEntity brand){
+        brandService.saveOrUpdate(brand);
         return CommonResult.ok();
     }
 

@@ -1,14 +1,17 @@
 package com.kunmall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.github.pagehelper.PageHelper;
+import com.kunmall.common.utils.CommonPage;
+import com.kunmall.product.model.AttrGroupModel;
+import com.kunmall.product.service.CategoryService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kunmall.product.entity.AttrGroupEntity;
 import com.kunmall.product.service.AttrGroupService;
@@ -30,14 +33,17 @@ public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /**
      * 列表
      */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:attrgroup:list")
-    public CommonResult list(@RequestParam Map<String, Object> params){
-        PageUtils page = attrGroupService.queryPage(params);
-
+    @RequestMapping(value ="/list", method = RequestMethod.POST)
+    public CommonResult list(@RequestBody AttrGroupModel model){
+        PageHelper.startPage(model.getPageNum(), model.getPageSize());
+        List<AttrGroupEntity> attrGroupEntities = attrGroupService.queryPage(model);
+        CommonPage<AttrGroupEntity> page = CommonPage.restPage(attrGroupEntities);
         return CommonResult.ok().put("page", page);
     }
 
@@ -46,10 +52,13 @@ public class AttrGroupController {
      * 信息
      */
     @RequestMapping("/info/{attrGroupId}")
-    //@RequiresPermissions("product:attrgroup:info")
     public CommonResult info(@PathVariable("attrGroupId") Long attrGroupId){
 		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
-
+        Long catelogId = attrGroup.getCatelogId();
+        if(catelogId != null){
+            String categoryPath = categoryService.getCategoryPath(catelogId);
+            attrGroup.setCatelogPath(categoryPath);
+        }
         return CommonResult.ok().put("attrGroup", attrGroup);
     }
 

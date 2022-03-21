@@ -4,7 +4,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.18.162:8848  #nacos注册中心地址
+        server-addr: 192.168.1.9:8848  #nacos注册中心地址
     gateway:
       routes:
         - id: product_route
@@ -13,10 +13,7 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
-        - id: coupon
-          uri: https://www.baidu.com
-          predicates:
-            - Query=url,bai.
+
 logging:
   level:
     com.kunmall: debug

@@ -74,7 +74,7 @@ public class PurchaseController {
 
         return CommonResult.ok();
     }
-
+    
     /**
      * 删除
      */
